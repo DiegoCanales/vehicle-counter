@@ -1,10 +1,19 @@
+import sys
+import os.path
 import cv2
 
 def main():
+
+    if(len(sys.argv) < 2 or not os.path.isfile(sys.argv[1])):
+        print('arguments missing.\nrun: main.py [video_path]')
+        exit(0)
+    
+    video = sys.argv[1]
+
     windowsName = 'highway'
     cv2.namedWindow(windowsName)
-    
-    cap = cv2.VideoCapture('./highway.mp4')
+
+    cap = cv2.VideoCapture(video)
     if cap.isOpened():
         ret, frame = cap.read()
     else:
